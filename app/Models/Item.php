@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Item extends Model
 {
@@ -26,14 +27,25 @@ class Item extends Model
         'photos' => 'array',
     ];
 
-    public function brand()
+    // Get first photo from photos
+    public function getThumbnailAttribute()
     {
-        return $this->belongsTo(Brand::class);
+        // If photos exist
+        if ($this->photos) {
+            return Storage::url(json_decode($this->photos)[0]);
+        }
+
+        return asset('images/default.png');
     }
 
     public function type()
     {
         return $this->belongsTo(Type::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     public function bookings()
