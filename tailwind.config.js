@@ -10,9 +10,26 @@ module.exports = {
     ],
 
     theme: {
+        container: {
+			center: true,
+			padding: {
+				DEFAULT: "1rem",
+				lg: "75px",
+				xl: "100px",
+			},
+		},
         extend: {
+            colors: {
+				primary: "#4743FB",
+				secondary: "#9D9DBC",
+				dark: "#0D0C41",
+				grey: "#D8D8E4",
+				darkGrey: "#F5F6F6",
+				subtlePars: "#B0AED6",
+			},
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+			    poppins: "Poppins, sans-serif",
             },
         },
     },
