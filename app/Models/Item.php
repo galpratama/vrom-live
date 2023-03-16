@@ -28,14 +28,13 @@ class Item extends Model
     ];
 
     // Get first photo from photos
-    public function getThumbnailAttribute()
+    public function getThumbnailAttribute() // thumbnail
     {
-        // If photos exist
         if ($this->photos) {
             return Storage::url(json_decode($this->photos)[0]);
         }
 
-        return asset('images/default.png');
+        return 'https://via.placeholder.com/800x600';
     }
 
     public function type()
