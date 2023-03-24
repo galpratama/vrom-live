@@ -6,29 +6,29 @@ import { homedir } from 'os'
 
 export default defineConfig(({ command, mode }) => {
   // Load current .env-file
-  const env = loadEnv(mode, process.cwd(), '')
+//   const env = loadEnv(mode, process.cwd(), '')
 
   // Set the host based on APP_URL
-  let host = new URL(env.APP_URL).host
-  let homeDir = homedir()
-  let serverConfig = {}
+//   let host = new URL(env.APP_URL).host
+//   let homeDir = homedir()
+//   let serverConfig = {}
 
-  if (homeDir) {
-    serverConfig = {
-      https: {
-        key: fs.readFileSync(
-          resolve(homeDir, `.config/valet/Certificates/${host}.key`),
-        ),
-        cert: fs.readFileSync(
-          resolve(homeDir, `.config/valet/Certificates/${host}.crt`),
-        ),
-      },
-      hmr: {
-        host
-      },
-      host
-    }
-  }
+//   if (homeDir) {
+//     serverConfig = {
+//       https: {
+//         key: fs.readFileSync(
+//           resolve(homeDir, `.config/valet/Certificates/${host}.key`),
+//         ),
+//         cert: fs.readFileSync(
+//           resolve(homeDir, `.config/valet/Certificates/${host}.crt`),
+//         ),
+//       },
+//       hmr: {
+//         host
+//       },
+//       host
+//     }
+//   }
 
   return {
     plugins: [laravel({
@@ -42,6 +42,6 @@ export default defineConfig(({ command, mode }) => {
             'app/Http/Livewire/**',
         ],
     })],
-    server: serverConfig
+    // server: serverConfig
   }
 });
